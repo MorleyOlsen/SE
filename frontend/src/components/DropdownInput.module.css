@@ -1,0 +1,48 @@
+@layer layout {
+  .dropdown-input {
+    display: inline-block;
+    position: relative;
+
+    > input {
+      width: 100%;
+
+      &:focus:focus {
+        background: var(--bg-12);
+      }
+    }
+
+    > div {
+      visibility: hidden;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      border-radius: 0.75rem;
+      padding-top: 2.5rem;
+      background: color-mix(in srgb, var(--bg-12), var(--bg-11));
+      width: 100%;
+      min-height: 1.5rem;
+
+      > div {
+        outline: none;
+        border-radius: 0.75rem;
+        padding: 0.5rem 0.75rem;
+
+        &.option:hover, &.option:focus {
+          background: var(--bg-12);
+        }
+      }
+    }
+
+    &:focus-within {
+      z-index: 1;
+
+      > input {
+        background: none;
+      }
+
+      > div {
+        visibility: visible;
+      }
+    }
+  }
+}

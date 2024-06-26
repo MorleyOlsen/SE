@@ -1,0 +1,48 @@
+@layer layout {
+  .root {
+    > h1 {
+      font-size: 2rem;
+    }
+
+    > div {
+      margin-top: 1rem;
+      columns: 2;
+      gap: 1rem;
+
+      > section {
+        margin-bottom: 1rem;
+        border: 1px dashed var(--brand-1);
+        border-radius: 1.25rem;
+        padding: 1rem;
+        break-inside: avoid-column;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        > .message {
+          margin-top: 0.25rem;
+          border-radius: 0.75rem;
+          padding: 0.5rem;
+          background: var(--bg-12);
+          user-select: text;
+
+          > time {
+            float: right;
+            margin-left: 0.5rem;
+            padding-top: 0.15rem;
+            color: var(--bg-21);
+            font-size: 0.875rem;
+          }
+        }
+
+        > form {
+          margin-top: 0.25rem;
+          display: flex;
+          gap: 0.25rem;
+          align-items: end;
+        }
+      }
+    }
+  }
+}

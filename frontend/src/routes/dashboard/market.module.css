@@ -1,0 +1,84 @@
+@layer layout {
+  .grid {
+    margin-top: 1rem;
+    display: grid;
+    grid: auto-flow / repeat(auto-fill, minmax(160px, 1fr));
+
+    > div {
+      border-radius: 0.75rem;
+      background: var(--bg-12);
+      padding: 0.5rem 0.75rem;
+
+      &:hover {
+        background: color-mix(in srgb, var(--bg-12), var(--bg-11));
+      }
+
+      &::before {
+        padding-bottom: 141%;
+        content: '';
+        float: left;
+      }
+
+      &::after {
+        display: table;
+        content: '';
+        clear: both;
+      }
+
+      > .name {
+        font-size: 1.5rem;
+      }
+
+      > .seller {
+        font-size: 0.875rem;
+        color: var(--bg-22);
+      }
+
+      > .price {
+        font-size: 1.5rem;
+        color: var(--brand-1);
+      }
+    }
+  }
+
+  .item {
+    > .seller {
+      font-size: 0.875rem;
+      color: var(--bg-22);
+    }
+
+    > .price-stock {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      > .price {
+        font-size: 1.5rem;
+        color: var(--brand-1);
+      }
+
+      > .stock {
+        padding-top: 0.375rem;
+        font-size: 0.875rem;
+        color: var(--bg-22);
+        }
+    }
+
+    > form {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    > h2 {
+      margin-top: 1rem;
+      padding: 0.375rem 0;
+      font-size: 1.5rem;
+    }
+
+    > .details {
+      user-select: text;
+    }
+  }
+}

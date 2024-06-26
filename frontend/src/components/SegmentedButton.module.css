@@ -1,0 +1,42 @@
+@layer layout {
+  .segmented-btn {
+    color: var(--fg-2);
+    background: var(--bg-21);
+    padding: 0;
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    overflow: hidden;
+
+    > input[type=radio], > input[type=checkbox] {
+      display: none;
+    }
+
+    > label {
+      display: block;
+      padding: 0.5rem 1.5rem;
+      border-left: 1px solid var(--bg-22);
+      text-align: center;
+
+      &:first-of-type {
+        border-left: none;
+      }
+
+      &:hover {
+        background: var(--bg-22);
+      }
+
+      &:active {
+        background: var(--bg-21);
+      }
+    }
+
+    > input:checked + label {
+      background: var(--bg-22);
+    }
+  }
+}

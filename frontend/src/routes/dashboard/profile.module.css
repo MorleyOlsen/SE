@@ -1,0 +1,17 @@
+@layer layout {
+  .root {
+    > form {
+      margin-top: 1rem;
+      width: fit-content;
+      display: grid;
+      grid: auto-flow / auto auto;
+      align-items: center;
+      gap: 0.5rem;
+
+      > button {
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+    }
+  }
+}

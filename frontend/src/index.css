@@ -1,0 +1,122 @@
+@layer reset, theme, layout;
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+}
+
+@layer theme {
+  :root, ::selection, ::backdrop {
+    --sans-font: sans-serif;
+    --brand-1: #4CAF50;
+    --fg-1: black;
+    --bg-11: #E8F5E9;
+    --bg-12: #C8E6C9;
+    --brand-2: #81C784;
+    --fg-2: #D7CCC8;
+    --bg-21: #3E2723;
+    --bg-22: #4E342E;
+    --shadow: 0 1px 2px -1px var(--fg-1);
+  }
+
+  body {
+    font-family: var(--sans-font);
+  }
+
+  #app {
+    color: var(--fg-1);
+    background: var(--bg-11);
+  }
+
+  ::selection {
+    color: var(--fg-2);
+    background: var(--bg-22);
+  }
+
+  a {
+    color: var(--brand-1);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--brand-2);
+    }
+
+    &::selection {
+      color: var(--brand-2);
+    }
+
+    &:hover::selection {
+      color: var(--brand-1);
+    }
+  }
+
+  em {
+    font-style: normal;
+    color: var(--brand-1);
+
+    &::selection {
+      color: var(--brand-2);
+    }
+  }
+
+  button {
+    color: var(--fg-2);
+    background: var(--bg-21);
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    width: fit-content;
+    box-shadow: var(--shadow);
+
+    &:hover {
+      background: var(--bg-22);
+    }
+
+    &:active {
+      background: var(--bg-21);
+    }
+  }
+
+  input {
+    background: var(--bg-12);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.75rem;
+
+    &:focus {
+      background: color-mix(in srgb, var(--bg-12), var(--bg-11));
+      outline: none;
+    }
+  }
+
+  textarea {
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-12);
+
+    &:focus {
+      background: color-mix(in srgb, var(--bg-12), var(--bg-11));
+      outline: none;
+    }
+  }
+}
+
+@layer layout {
+  #app {
+    width: 100vw;
+    min-height: 100vh;
+    user-select: none;
+  }
+}

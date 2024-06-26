@@ -1,0 +1,51 @@
+@layer layout {
+  .page {
+    display: grid;
+    grid: auto-flow / 1fr 1fr;
+    align-items: center;
+    height: 100vh;
+
+    > main {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      > h1 {
+        font-weight: normal;
+        font-size: 3rem;
+      }
+
+      > form {
+        display: grid;
+        width: fit-content;
+        grid: auto-flow / auto auto;
+        align-items: center;
+        gap: 0.5rem;
+
+        > fieldset {
+          width: 100%;
+        }
+
+        > button {
+          grid-column: 1 / -1;
+          justify-self: center;
+        }
+      }
+    }
+
+    > picture {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+}

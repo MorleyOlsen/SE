@@ -1,0 +1,58 @@
+@layer layout {
+  .data-table {
+    border-spacing: 0 0.25rem;
+
+    > thead > tr > th, > tbody > tr > td {
+      padding: 0.5rem 1rem;
+      background: var(--bg-12);
+
+      &:first-child {
+        border-top-left-radius: 0.75rem;
+        border-bottom-left-radius: 0.75rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+      }
+
+      &:not(:last-child) {
+        user-select: text;
+      }
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .editor {
+      border: 1px dashed var(--brand-1);
+      background: var(--bg-11);
+      padding: 1rem;
+
+      > form {
+        margin-right: auto;
+        width: fit-content;
+        display: grid;
+        grid: auto-flow / auto auto;
+        align-items: center;
+        gap: 0.5rem;
+
+        > span[with-unit] {
+          display: grid;
+          grid: auto-flow / 1fr auto;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        > div {
+          grid-column: 1 / -1;
+          justify-self: center;
+          display: flex;
+          gap: 0.5rem;
+        }
+      }
+    }
+  }
+}
