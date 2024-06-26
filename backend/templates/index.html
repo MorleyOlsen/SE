@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>System</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('movieForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();  // 阻止表单的常规提交
+                const title = document.getElementById('title').value;
+                const year = document.getElementById('year').value;
+                fetch('{{ url_for("add_movie") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({title: title, year: year})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);  // 处理响应数据
+                    // 可以在这里更新页面，例如显示添加成功的消息
+                })
+                .catch(error => console.error('Error:', error));
+            });
+            const deleteForm = document.getElementById('deleteMovieForm');
+            deleteForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const title = document.getElementById('deleteTitle').value;
+                const year = document.getElementById('deleteYear').value;
+                fetch('{{ url_for("delete_movie") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({title: title, year: year})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Deleted:', data);  // Log the response data
+                    // Update the page here
+                })
+                .catch(error => console.error('Delete Error:', error));
+            });
+            const queryForm = document.getElementById('queryMovieForm');
+            queryForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const title = document.getElementById('queryTitle').value;
+                
+                fetch(`/query_movie?title=${encodeURIComponent(title)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.error) {
+                        console.error('Error:', data.error);
+                        document.getElementById('queryResult').innerText = '查询错误: ' + data.error;
+                    } else {
+                        console.log('Queried:', data);
+                        // 假设返回的数据是 data.title 和 data.year
+                        document.getElementById('queryResult').innerText = `查询结果:${data.title} - ${data.year}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Query Error:', error);
+                    document.getElementById('queryResult').innerText = '查询请求失败';
+                });
+            });
+            const updateForm = document.getElementById('updateMovieForm');
+            updateForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const id = document.getElementById('updateId').value
+                const title = document.getElementById('updateTitle').value;
+                const year = document.getElementById('updateYear').value;
+                fetch('{{ url_for("update_movie") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({id: id, title: title, year: year})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Updated:', data);  // Log the response data
+                    // Update the page here
+                })
+                .catch(error => console.error('Update Error:', error));
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Movies</h2>
+    <p>{{ movies|length }} Titles</p>
+    <ul>
+        {% for movie in movies %}
+        <li>{{ movie.title }} - {{ movie.year }}</li>
+        {% endfor %}
+    </ul>
+    <form id="movieForm">
+        <label for="title">Movie Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required>
+
+        <button type="submit">Add Movie</button>
+    </form>
+    <form id="deleteMovieForm">
+        <label for="deleteTitle">Movie Title:</label>
+        <input type="text" id="deleteTitle" name="title" required>
+    
+        <label for="deleteYear">Year:</label>
+        <input type="text" id="deleteYear" name="year" required>
+    
+        <button type="submit">Delete Movie</button>
+    </form>
+    <form id="queryMovieForm">
+        <label for="queryTitle">Movie Title:</label>
+        <input type="text" id="queryTitle" name="title" required>
+    
+        <button type="submit">Query Movie</button>
+    </form>
+    <div id="queryResult">查询结果将显示在这里</div>
+    <form id="updateMovieForm">
+        <label for="updateTitle">Movie Id:</label>
+        <input type="text" id="updateId" name="id" required>
+
+        <label for="updateTitle">Movie Title:</label>
+        <input type="text" id="updateTitle" name="title" required>
+    
+        <label for="updateYear">Year:</label>
+        <input type="text" id="updateYear" name="year" required>
+    
+        <button type="submit">Update Movie</button>
+    </form>
+</body>
+</html>
